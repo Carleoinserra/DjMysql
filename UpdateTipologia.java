@@ -30,11 +30,11 @@ public class UpdateTipologia {
 	        	
 	        	scelta = input.nextInt();
 	        if (scelta == 2) {
-	        	
+	        	Scanner input1 = new Scanner (System.in);
 	        	String query = "UPDATE ListaDj SET resident = (?) WHERE nome = (?)";
 	        System.out.println("Nome del dj: ");
-	        String nome = input.nextLine();
-	        Scanner input1 = new Scanner (System.in);
+	        String nome = input1.nextLine();
+	        
 	        System.out.println("Scrivi la nuova residenza: ");
 	        String resident = input1.next();
 	        
@@ -70,6 +70,10 @@ public class UpdateTipologia {
 	            String genere = input3.next();
 	            System.out.println("Scrivi la residenza");
 	            String residenza = input3.next();
+	            System.out.println("Scrivi il prezzo");
+	            int prezzo = input3.nextInt();
+	            System.out.println("Scrivi il numero dei posti:");
+	            int numero = input3.nextInt();
 	            
 	            
 	            
@@ -77,13 +81,16 @@ public class UpdateTipologia {
 
 	             // Query SQL per l'inserimento dei dati nella tabella dipendenti
 	             // i punti interrogativi si chiamano segnaposto
-	             String insertQuery = "INSERT INTO listaDj (nome, tipologia, resident) VALUES (?, ?, ?)";
+	             String insertQuery = "INSERT INTO listaDj (nome, tipologia, resident, prezzo, NumeroPosti ) VALUES (?, ?, ?,?,?)";
 
 	             // Crea un PreparedStatement per eseguire la query
 	             PreparedStatement stmt = conn.prepareStatement(insertQuery);
 	             stmt.setString(1, nome);
 	             stmt.setString(2, genere);
 	             stmt.setString(3, residenza);
+	             stmt.setInt(4, prezzo);
+	             stmt.setInt(5,  numero);
+	             
 	            
 
 	             // Esegui la query e ottieni il numero di righe aggiornate
